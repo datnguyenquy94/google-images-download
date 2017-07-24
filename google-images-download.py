@@ -1,4 +1,4 @@
-
+#!/usr/bin/python
 # coding: utf-8
 
 # In[ ]:
@@ -12,7 +12,7 @@
 import time       #Importing the time library to check the time of code execution
 import sys    #Importing the System Library
 import os
-import urllib2
+import urllib
 
 
 ########### Edit From Here ###########
@@ -44,12 +44,12 @@ def download_page(url):
         except Exception as e:
             print(str(e))
     else:                        #If the Current Version of Python is 2.x
-        import urllib2
+        import urllib
         try:
             headers = {}
             headers['User-Agent'] = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"
-            req = urllib2.Request(url, headers = headers)
-            response = urllib2.urlopen(req)
+            req = urllib.Request(url, headers = headers)
+            response = urllib.urlopen(req)
             page = response.read()
             return page
         except:
@@ -101,7 +101,7 @@ while i<len(search_keyword):
      #make a search keyword  directory
     try:
         os.makedirs(search_keywords)
-    except OSError, e:
+    except OSError as e:
         if e.errno != 17:
             raise   
         # time.sleep might help here
@@ -136,8 +136,9 @@ while i<len(search_keyword):
     k=0
     errorCount=0
     while(k<len(items)):
-        from urllib2 import Request,urlopen
-        from urllib2 import URLError, HTTPError
+        from urllib.request import Request,urlopen
+        # from urllib.request import urlopen
+        from urllib.error import URLError, HTTPError
 
         try:
             req = Request(items[k], headers={"User-Agent": "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"})
